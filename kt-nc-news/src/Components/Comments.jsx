@@ -1,7 +1,6 @@
 import React, { PureComponent } from 'react';
 import * as api from '../api';
 import CommentTextBox from './CommentTextBox';
-import { navigate } from '@reach/router';
 
 class Comments extends PureComponent {
   state = {
@@ -9,7 +8,8 @@ class Comments extends PureComponent {
     isLoading: true,
     newComment: null,
     user: null,
-    trigger: true
+    trigger: true,
+    commentVoteTrigger: false
   };
 
   render() {
@@ -25,12 +25,29 @@ class Comments extends PureComponent {
                 <p key={i}>
                   comment: {comment.body} author: {comment.author}
                 </p>
+                {comment.author === this.state.user && (
+                  <button
+                    onClick={this.handleCommentDelete}
+                    value={comment.author}
+                    name={comment.comment_id}
+                  >
+                    Delete
+                  </button>
+                )}
                 <button
-                  onClick={this.handleCommentDelete}
-                  value={comment.author}
+                  onClick={this.handleVote}
+                  value="-1"
                   name={comment.comment_id}
                 >
-                  Delete
+                  -
+                </button>
+                <p>Votes: {comment.votes}</p>
+                <button
+                  onClick={this.handleVote}
+                  value="1"
+                  name={comment.comment_id}
+                >
+                  +
                 </button>
               </div>
             );
@@ -71,15 +88,35 @@ class Comments extends PureComponent {
         this.setState({ comments, isLoading: false });
       });
     }
-    if (this.state.trigger) {
+    if (this.state.trigger || this.state.commentVoteTrigger) {
       api.getCommentsByArticle(this.props.article_id).then(comments => {
-        this.setState({ comments, isLoading: false, trigger: false });
+        this.setState({
+          comments,
+          isLoading: false,
+          trigger: false,
+          commentVoteTrigger: false
+        });
       });
     }
   }
 
   postComment = body => {
     this.setState({ newComment: body });
+  };
+
+  handleVote = event => {
+    const commentId = event.target.name;
+    const vote = parseInt(event.target.value);
+    // let {
+    //   article: { votes }
+    // } = this.state;
+    // votes = votes + parseInt(event.target.value);
+    // this.setState(currentState => {
+    //   return { article: { ...currentState.article, votes } };
+    // });
+    api.commentVote(commentId, vote).then(comment => {
+      this.setState({ commentVoteTrigger: true });
+    });
   };
 
   handleCommentDelete = event => {

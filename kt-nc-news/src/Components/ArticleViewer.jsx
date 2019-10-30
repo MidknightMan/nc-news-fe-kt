@@ -8,6 +8,7 @@ class ArticleViewer extends PureComponent {
   render() {
     const { isLoading, article } = this.state;
     if (isLoading) return <p>Article Loading...</p>;
+    if (article === {}) return <p>Please select an article</p>;
     return (
       <div className="articleViewer">
         <main>

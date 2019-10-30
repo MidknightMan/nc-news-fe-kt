@@ -1,11 +1,12 @@
 import axios from 'axios';
 
-export const GetAllArticles = (sortBy, orderBy) => {
+export const GetAllArticles = (sortBy, orderBy, topicSelected) => {
   return axios
     .get('https://nc-news-kst.herokuapp.com/api/articles', {
       params: {
         sort_by: sortBy,
-        order: orderBy
+        order: orderBy,
+        topic: topicSelected
       }
     })
     .then(({ data: { articles } }) => {
@@ -43,6 +44,16 @@ export const postCommentByArticle = (user, body, articleId) => {
 export const deleteSelectedComment = commentId => {
   return axios
     .delete(`https://nc-news-kst.herokuapp.com/api/comments/${commentId}`)
+    .then(({ data: { comment } }) => {
+      return comment;
+    });
+};
+
+export const commentVote = (commentId, vote) => {
+  return axios
+    .patch(`https://nc-news-kst.herokuapp.com/api/comments/${commentId}`, {
+      inc_votes: vote
+    })
     .then(({ data: { comment } }) => {
       return comment;
     });

@@ -10,6 +10,7 @@ class ArticleList extends PureComponent {
     orderBy: 'desc'
   };
   render() {
+    const topic = this.props.uri.substr(1);
     const { articles, isLoading } = this.state;
     if (isLoading) return <p>Loading...</p>;
     return (
@@ -39,6 +40,8 @@ class ArticleList extends PureComponent {
                 article={article}
                 key={article.article_id}
                 className="articleCard"
+                path={this.props.path}
+                topicName={topic}
               />
             );
           })}
@@ -58,12 +61,22 @@ class ArticleList extends PureComponent {
   };
 
   componentDidMount() {
-    api.GetAllArticles().then(articles => {
-      this.setState({ articles, isLoading: false });
-    });
+    const topic = this.props.uri.substr(1);
+    if (topic === 'cooking' || topic === 'football' || topic === 'coding') {
+      api
+        .GetAllArticles(this.state.sortBy, this.state.orderBy, topic)
+        .then(articles => {
+          this.setState({ articles, isLoading: false });
+        });
+    } else {
+      api.GetAllArticles().then(articles => {
+        this.setState({ articles, isLoading: false });
+      });
+    }
   }
 
   componentDidUpdate(prevProps, prevState) {
+    const topic = this.props.uri.substr(1);
     if (
       this.state.sortBy !== prevState.sortBy ||
       this.state.orderBy !== prevState.orderBy
@@ -73,6 +86,19 @@ class ArticleList extends PureComponent {
         .then(articles => {
           this.setState({ articles, isLoading: false });
         });
+    }
+    if (this.props.path !== prevProps.path) {
+      if (topic === 'cooking' || topic === 'football' || topic === 'coding') {
+        api
+          .GetAllArticles(this.state.sortBy, this.state.orderBy, topic)
+          .then(articles => {
+            this.setState({ articles, isLoading: false });
+          });
+      } else {
+        api.GetAllArticles().then(articles => {
+          this.setState({ articles, isLoading: false });
+        });
+      }
     }
   }
 }

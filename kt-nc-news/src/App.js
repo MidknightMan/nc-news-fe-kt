@@ -30,10 +30,11 @@ class App extends React.Component {
           </div>
           <div className="articleList">
             <Router>
-              <ArticleList path="/*" />
-              <ArticleList path="/cooking" />
-              <ArticleList path="/football" />
-              <ArticleList path="/coding" />
+              <ArticleList path="/" />
+              <ArticleList path="/articles/*" />
+              <ArticleList path="/cooking/*" />
+              <ArticleList path="/football/*" />
+              <ArticleList path="/coding/*" />
             </Router>
           </div>
           <div className="articleViewer">
@@ -41,6 +42,18 @@ class App extends React.Component {
               <ArticleViewer
                 user={this.state.user}
                 path="/articles/:article_id"
+              />
+              <ArticleViewer
+                user={this.state.user}
+                path="/cooking/:article_id"
+              />
+              <ArticleViewer
+                user={this.state.user}
+                path="/football/:article_id"
+              />
+              <ArticleViewer
+                user={this.state.user}
+                path="/coding/:article_id"
               />
             </Router>
           </div>

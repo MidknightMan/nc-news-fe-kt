@@ -10,7 +10,7 @@ class Ticker extends React.Component {
   };
   render() {
     const { articles, isLoading } = this.state;
-    console.log(articles);
+
     if (isLoading) return <p>Ticker Loading...</p>;
     return (
       <div className={styles.tickerWrap}>
