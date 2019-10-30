@@ -21,7 +21,7 @@
   display: grid;
   /* grid-template-areas: 'header header' 'tickerBox tickerBox' 'search search' 'articleList articleViewer'; */
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: auto auto auto 78vh;
+  grid-template-rows: auto auto auto auto 78vh;
 }
 
 .header {
@@ -50,11 +50,18 @@ link {
   background-color: lightcyan;
 }
 
+.myprofile {
+  grid-area: 'myprofile';
+  grid-column: 1 / span 2;
+  grid-row: 4 / span 1;
+  background-color: lightskyblue;
+}
+
 .articleList {
   grid-area: 'articleList';
   overflow: scroll;
   grid-column: 1 / span 1;
-  grid-row: 4 / span 1;
+  grid-row: 5 / span 1;
   background-color: lightpink;
   justify-content: space-around;
 }
@@ -62,7 +69,7 @@ link {
 .articleViewer {
   grid-area: 'articleViewer';
   grid-column: 2 / span 1;
-  grid-row: 4 / span 1;
+  grid-row: 5 / span 1;
   overflow: scroll;
   background-color: lightsalmon;
   justify-content: space-around;
@@ -70,4 +77,11 @@ link {
 
 #articleCard {
   border: grey 1px solid;
+}
+
+.errorDisplay {
+  grid-area: 'myprofile';
+  grid-column: 1 / span 2;
+  grid-row: 4 / span 1;
+  background-color: lightskyblue;
 }

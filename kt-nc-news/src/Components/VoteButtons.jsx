@@ -10,13 +10,16 @@ class VoteButtons extends PureComponent {
   handleVote = event => {
     const voteInfo = parseInt(event.target.value);
     const { id, section } = this.props;
+
     api.updateVote(id, voteInfo, section).catch(err => {
       this.setState({
         vote: 0,
         err: { status: 500, msg: 'Soz... pls try again later' }
       });
     });
-    this.setState({ vote: voteInfo });
+    this.setState(currentState => {
+      return { vote: currentState.vote + voteInfo };
+    });
   };
 
   render() {
@@ -25,7 +28,7 @@ class VoteButtons extends PureComponent {
     return (
       <>
         <button
-          disabled={vote === 0 ? false : true}
+          disabled={vote === -1 ? true : false}
           onClick={this.handleVote}
           value="-1"
         >
@@ -38,7 +41,7 @@ class VoteButtons extends PureComponent {
           </p>
         )}
         <button
-          disabled={vote === 0 ? false : true}
+          disabled={vote === 1 ? true : false}
           onClick={this.handleVote}
           value="1"
         >
@@ -46,6 +49,16 @@ class VoteButtons extends PureComponent {
         </button>
       </>
     );
+  }
+
+  componentDidMount() {
+    this.setState({ vote: 0 });
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.id !== prevProps.id) {
+      this.setState({ vote: 0 });
+    }
   }
 }
 

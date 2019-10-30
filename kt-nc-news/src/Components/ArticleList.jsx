@@ -76,13 +76,16 @@ class ArticleList extends PureComponent {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    const topic = this.props.uri.substr(1);
+    let topic = this.props.uri.substr(1);
+    if (topic === 'articles') {
+      topic = undefined;
+    }
     if (
       this.state.sortBy !== prevState.sortBy ||
       this.state.orderBy !== prevState.orderBy
     ) {
       api
-        .GetAllArticles(this.state.sortBy, this.state.orderBy)
+        .GetAllArticles(this.state.sortBy, this.state.orderBy, topic)
         .then(articles => {
           this.setState({ articles, isLoading: false });
         });

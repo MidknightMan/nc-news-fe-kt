@@ -19,6 +19,12 @@ class Comments extends PureComponent {
     return (
       <label>
         Comments:
+        <section>
+          <CommentTextBox
+            user={this.props.user}
+            postComment={this.postComment}
+          />
+        </section>
         <ul>
           {comments.map((comment, i) => {
             return (
@@ -40,31 +46,10 @@ class Comments extends PureComponent {
                   existingVotes={comment.votes}
                   section={'comments'}
                 />
-                {/* <button
-                  onClick={this.handleVote}
-                  value="-1"
-                  name={comment.comment_id}
-                >
-                  -
-                </button>
-                <p>Votes: {comment.votes}</p>
-                <button
-                  onClick={this.handleVote}
-                  value="1"
-                  name={comment.comment_id}
-                >
-                  +
-                </button> */}
               </div>
             );
           })}
         </ul>
-        <section>
-          <CommentTextBox
-            user={this.props.user}
-            postComment={this.postComment}
-          />
-        </section>
       </label>
     );
   }
@@ -94,13 +79,12 @@ class Comments extends PureComponent {
         this.setState({ comments, isLoading: false });
       });
     }
-    if (this.state.trigger || this.state.commentVoteTrigger) {
+    if (this.state.trigger) {
       api.getCommentsByArticle(this.props.article_id).then(comments => {
         this.setState({
           comments,
           isLoading: false,
-          trigger: false,
-          commentVoteTrigger: false
+          trigger: false
         });
       });
     }
@@ -109,21 +93,6 @@ class Comments extends PureComponent {
   postComment = body => {
     this.setState({ newComment: body });
   };
-
-  // handleVote = event => {
-  //   const commentId = event.target.name;
-  //   const vote = parseInt(event.target.value);
-  //   // let {
-  //   //   article: { votes }
-  //   // } = this.state;
-  //   // votes = votes + parseInt(event.target.value);
-  //   // this.setState(currentState => {
-  //   //   return { article: { ...currentState.article, votes } };
-  //   // });
-  //   api.commentVote(commentId, vote).then(comment => {
-  //     this.setState({ commentVoteTrigger: true });
-  //   });
-  // };
 
   handleCommentDelete = event => {
     const commentId = event.target.name;

@@ -6,6 +6,8 @@ import Ticker from './Components/Ticker';
 import ArticleList from './Components/ArticleList';
 import SearchBox from './Components/SearchBox';
 import ArticleViewer from './Components/ArticleViewer';
+import UserProfile from './Components/UserProfile';
+import ErrorDisplay from './Components/ErrorDisplay';
 
 class App extends React.Component {
   state = {
@@ -27,6 +29,11 @@ class App extends React.Component {
           </div>
           <div className="search">
             <SearchBox />
+          </div>
+          <div className="myprofile">
+            <Router>
+              <UserProfile path="/myprofile" user={this.state.user} />
+            </Router>
           </div>
           <div className="articleList">
             <Router>
@@ -54,6 +61,14 @@ class App extends React.Component {
               <ArticleViewer
                 user={this.state.user}
                 path="/coding/:article_id"
+              />
+            </Router>
+          </div>
+          <div className="errorDisplay">
+            <Router>
+              <ErrorDisplay
+                default
+                err={{ status: 404, msg: 'incorrect path' }}
               />
             </Router>
           </div>

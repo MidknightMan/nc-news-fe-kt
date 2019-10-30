@@ -2,14 +2,16 @@ import React, { PureComponent } from 'react';
 import Comments from './Comments';
 import * as api from '../api';
 import VoteButtons from './VoteButtons';
+import ErrorDisplay from '../Components/ErrorDisplay';
 
 class ArticleViewer extends PureComponent {
-  state = { isLoading: true, article: {} };
+  state = { isLoading: true, article: {}, err: null };
 
   render() {
-    const { isLoading, article } = this.state;
+    const { isLoading, article, err } = this.state;
     if (isLoading) return <p>Article Loading...</p>;
     if (article === {}) return <p>Please select an article</p>;
+    if (err) return <ErrorDisplay err={err} />;
     return (
       <div className="articleViewer">
         <main>
@@ -21,13 +23,6 @@ class ArticleViewer extends PureComponent {
             existingVotes={article.votes}
             section={'articles'}
           />
-          {/* <button onClick={this.handleVote} value="-1">
-            -
-          </button>
-          <p>Votes: {article.votes}</p>
-          <button onClick={this.handleVote} value="1">
-            +
-          </button> */}
           <p>{article.body}</p>
         </main>
         <Comments article_id={this.props.article_id} user={this.props.user} />
@@ -35,26 +30,24 @@ class ArticleViewer extends PureComponent {
     );
   }
 
-  // handleVote = event => {
-  //   let {
-  //     article: { votes }
-  //   } = this.state;
-  //   votes = votes + parseInt(event.target.value);
-  //   this.setState(currentState => {
-  //     return { article: { ...currentState.article, votes } };
-  //   });
-  // };
-
   componentDidMount() {
-    api.getArticleById(this.props.article_id).then(article => {
-      this.setState({ article, isLoading: false });
-    });
+    api
+      .getArticleById(this.props.article_id)
+      .then(article => {
+        this.setState({ article, isLoading: false });
+      })
+      .catch(err => {
+        this.setState({
+          err: { status: 404, msg: 'article not found' },
+          isLoading: false
+        });
+      });
   }
 
   componentDidUpdate(prevProps, PrevState) {
     if (this.props.article_id !== prevProps.article_id) {
       api.getArticleById(this.props.article_id).then(article => {
-        this.setState({ article, isLoading: false });
+        this.setState({ article, isLoading: false, err: null });
       });
     }
   }

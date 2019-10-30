@@ -59,12 +59,10 @@ export const updateVote = (id, vote, section) => {
     });
 };
 
-export const articleVote = (articleId, vote) => {
+export const getUserInfo = user => {
   return axios
-    .patch(`https://nc-news-kst.herokuapp.com/api/articles/${articleId}`, {
-      inc_votes: vote
-    })
-    .then(({ data: { article } }) => {
-      return article;
+    .get(`https://nc-news-kst.herokuapp.com/api/users/${user}`)
+    .then(({ data: { user } }) => {
+      return user;
     });
 };
