@@ -21,7 +21,7 @@
   display: grid;
   /* grid-template-areas: 'header header' 'tickerBox tickerBox' 'search search' 'articleList articleViewer'; */
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: 20vh 5vh 5vh 70vh;
+  grid-template-rows: auto auto auto 78vh;
 }
 
 .header {

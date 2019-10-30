@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import * as api from '../api';
 import CommentTextBox from './CommentTextBox';
+import VoteButtons from './VoteButtons';
 
 class Comments extends PureComponent {
   state = {
@@ -34,7 +35,12 @@ class Comments extends PureComponent {
                     Delete
                   </button>
                 )}
-                <button
+                <VoteButtons
+                  id={comment.comment_id}
+                  existingVotes={comment.votes}
+                  section={'comments'}
+                />
+                {/* <button
                   onClick={this.handleVote}
                   value="-1"
                   name={comment.comment_id}
@@ -48,7 +54,7 @@ class Comments extends PureComponent {
                   name={comment.comment_id}
                 >
                   +
-                </button>
+                </button> */}
               </div>
             );
           })}
@@ -104,20 +110,20 @@ class Comments extends PureComponent {
     this.setState({ newComment: body });
   };
 
-  handleVote = event => {
-    const commentId = event.target.name;
-    const vote = parseInt(event.target.value);
-    // let {
-    //   article: { votes }
-    // } = this.state;
-    // votes = votes + parseInt(event.target.value);
-    // this.setState(currentState => {
-    //   return { article: { ...currentState.article, votes } };
-    // });
-    api.commentVote(commentId, vote).then(comment => {
-      this.setState({ commentVoteTrigger: true });
-    });
-  };
+  // handleVote = event => {
+  //   const commentId = event.target.name;
+  //   const vote = parseInt(event.target.value);
+  //   // let {
+  //   //   article: { votes }
+  //   // } = this.state;
+  //   // votes = votes + parseInt(event.target.value);
+  //   // this.setState(currentState => {
+  //   //   return { article: { ...currentState.article, votes } };
+  //   // });
+  //   api.commentVote(commentId, vote).then(comment => {
+  //     this.setState({ commentVoteTrigger: true });
+  //   });
+  // };
 
   handleCommentDelete = event => {
     const commentId = event.target.name;

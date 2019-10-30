@@ -49,12 +49,22 @@ export const deleteSelectedComment = commentId => {
     });
 };
 
-export const commentVote = (commentId, vote) => {
+export const updateVote = (id, vote, section) => {
   return axios
-    .patch(`https://nc-news-kst.herokuapp.com/api/comments/${commentId}`, {
+    .patch(`https://nc-news-kst.herokuapp.com/api/${section}/${id}`, {
       inc_votes: vote
     })
-    .then(({ data: { comment } }) => {
-      return comment;
+    .then(({ data }) => {
+      return data;
+    });
+};
+
+export const articleVote = (articleId, vote) => {
+  return axios
+    .patch(`https://nc-news-kst.herokuapp.com/api/articles/${articleId}`, {
+      inc_votes: vote
+    })
+    .then(({ data: { article } }) => {
+      return article;
     });
 };

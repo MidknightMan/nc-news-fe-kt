@@ -9,6 +9,7 @@ class Header extends PureComponent {
       <div className="header">
         <header>
           <h1>in the know</h1>
+          <h2>Logged in as: {this.props.user}</h2>
         </header>
         <nav>
           <Link to="/">Home</Link> <Link to="/cooking">Cooking</Link>{' '}
