@@ -42,6 +42,10 @@ class App extends React.Component {
               <ArticleList path="/cooking/*" />
               <ArticleList path="/football/*" />
               <ArticleList path="/coding/*" />
+              <ErrorDisplay
+                default
+                err={{ status: 404, msg: 'incorrect path' }}
+              />
             </Router>
           </div>
           <div className="articleViewer">
@@ -64,14 +68,14 @@ class App extends React.Component {
               />
             </Router>
           </div>
-          <div className="errorDisplay">
+          {/* <div className="errorDisplay">
             <Router>
               <ErrorDisplay
                 default
                 err={{ status: 404, msg: 'incorrect path' }}
               />
             </Router>
-          </div>
+          </div> */}
         </div>
       </div>
     );
