@@ -66,3 +66,22 @@ export const getUserInfo = user => {
       return user;
     });
 };
+
+export const getTopics = async () => {
+  const topics = await axios.get(
+    `https://nc-news-kst.herokuapp.com/api/topics/`
+  );
+  return topics.data.topics.map(topic => {
+    return topic.slug;
+  });
+};
+
+export const getUsers = async () => {
+  const users = await axios.get(`https://nc-news-kst.herokuapp.com/api/users/`);
+  return users.data.users.map(user => {
+    return user.username;
+  });
+  // return topics.data.topics.map(topic => {
+  //   return topic.slug;
+  // });
+};

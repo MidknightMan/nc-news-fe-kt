@@ -12,9 +12,11 @@ class Header extends PureComponent {
           <h2>Logged in as: {this.props.user}</h2>
         </header>
         <nav>
-          <Link to="/">Home</Link> <Link to="/cooking">Cooking</Link>{' '}
-          <Link to="/football">Football</Link> <Link to="/coding">Coding</Link>{' '}
-          <Link to="/myprofile">My Profile</Link>
+          <Link to="/articles">All</Link>{' '}
+          <Link to="/articles/topic/cooking">Cooking</Link>{' '}
+          <Link to="/articles/topic/football">Football</Link>{' '}
+          <Link to="/articles/topic/coding">Coding</Link>{' '}
+          <Link to="/myprofile">My Profile</Link> <Link to="/login">Login</Link>
         </nav>
       </div>
     );

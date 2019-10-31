@@ -13,7 +13,7 @@ class ArticleViewer extends PureComponent {
     if (article === {}) return <p>Please select an article</p>;
     if (err) return <ErrorDisplay err={err} />;
     return (
-      <div className="articleViewer">
+      <div>
         <main>
           <p>Title: {article.title}</p>
           <p>Author: {article.author}</p>

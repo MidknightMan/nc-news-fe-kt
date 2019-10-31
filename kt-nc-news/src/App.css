@@ -57,10 +57,10 @@ link {
   background-color: lightskyblue;
 }
 
-.articleList {
+/* .articleList {
   grid-area: 'articleList';
   overflow: scroll;
-  grid-column: 1 / span 1;
+  grid-column: 1 / span 2;
   grid-row: 5 / span 1;
   background-color: lightpink;
   justify-content: space-around;
@@ -68,10 +68,19 @@ link {
 
 .articleViewer {
   grid-area: 'articleViewer';
-  grid-column: 2 / span 1;
+  grid-column: 1 / span 2;
   grid-row: 5 / span 1;
   overflow: scroll;
   background-color: lightsalmon;
+  justify-content: space-around;
+} */
+
+.routedContent {
+  grid-area: 'routedContent';
+  overflow: scroll;
+  grid-column: 1 / span 2;
+  grid-row: 5 / span 1;
+  background-color: lightpink;
   justify-content: space-around;
 }
 
