@@ -3,13 +3,14 @@ import Comments from './Comments';
 import * as api from '../api';
 import VoteButtons from './VoteButtons';
 import ErrorDisplay from '../Components/ErrorDisplay';
+import Loading from '../Components/Loading';
 
 class ArticleViewer extends PureComponent {
   state = { isLoading: true, article: {}, err: null };
 
   render() {
     const { isLoading, article, err } = this.state;
-    if (isLoading) return <p>Article Loading...</p>;
+    if (isLoading) return <Loading active />;
     if (article === {}) return <p>Please select an article</p>;
     if (err) return <ErrorDisplay err={err} />;
     return (

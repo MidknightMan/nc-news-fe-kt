@@ -19,7 +19,7 @@ class ArticleList extends PureComponent {
     return (
       <div>
         <div>
-          <label>
+          <label className="sortByDropDown">
             Sort-By:
             <select name="sortBy" id="sortBy" onChange={this.handleSortChange}>
               <option value="created_at">Date Created (Default) </option>

@@ -36,8 +36,7 @@ nav {
   background-color: #190061;
   justify-content: stretch;
   padding: 20px;
-
-  font-size-adjust: 1.2;
+  font-size-adjust: 1;
 }
 
 .tickerBox {
@@ -104,6 +103,11 @@ link {
   margin: 2%;
   background-color: #18006157;
   border-radius: 15px;
+  text-decoration: none;
+}
+
+#articleCard a:link {
+  text-decoration: none;
 }
 
 #articleCard:hover {
@@ -134,4 +138,67 @@ a:visited {
 
 a:hover {
   color: lightskyblue;
+}
+
+.articleCardContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto auto auto auto;
+}
+
+.articleCardTitle {
+  grid-column: 1 / span 2;
+  grid-row: 1 / span 1;
+  margin: 0%;
+  padding: 1%;
+}
+
+.articleCardAuthor {
+  grid-column: 1 / span 2;
+  grid-row: 2 / span 1;
+  margin: 0%;
+  padding: 1%;
+}
+
+.articleCardTopic {
+  grid-column: 1 / span 2;
+  grid-row: 3 / span 1;
+  margin: 0%;
+  padding: 1%;
+}
+
+.articleCardDate {
+  grid-column: 1 / span 2;
+  grid-row: 4 / span 1;
+  margin: 0%;
+  padding: 1%;
+}
+
+.articleCardVotes {
+  grid-column: 1 / span 1;
+  grid-row: 5 / span 1;
+  margin: 0%;
+  padding: 1%;
+  border: #5a34caa6 solid 1px;
+  border-radius: 15px;
+}
+
+.articleCardComments {
+  grid-column: 2 / span 1;
+  grid-row: 5 / span 1;
+  margin: 0%;
+  padding: 1%;
+  border: #5a34caa6 solid 1px;
+  border-radius: 15px;
+}
+
+#sortBy {
+  margin: 2%;
+  padding: 2%;
+  color: white;
+  background-color: #724ae9a6;
+  border: white;
+  width: 25%;
+  height: 30px;
+  font-size: 76%;
 }
