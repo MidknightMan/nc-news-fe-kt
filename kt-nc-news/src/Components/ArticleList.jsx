@@ -30,6 +30,7 @@ class ArticleList extends PureComponent {
               <option value="comment_count">Comment Count</option>
             </select>
           </label>
+          {'      '}
           <label>
             Order-By:
             <select name="sortBy" id="sortBy" onChange={this.handleOrderChange}>

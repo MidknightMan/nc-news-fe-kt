@@ -13,7 +13,7 @@ import UserLogin from './Components/UserLogin';
 
 class App extends React.Component {
   state = {
-    user: 'jessjelly',
+    user: 'guest',
     trigger1: false,
     isLoading: true,
     topics: []
@@ -35,10 +35,19 @@ class App extends React.Component {
           </div>
           <div className="routedContent">
             <Router>
-              <UserLogin path="/login" />
-              <ArticleList path="/" />
-              <ArticleList path="/articles" />
-              <ArticleList path="/articles/topic/:topic" />
+              <UserLogin
+                path="/login"
+                updateUser={this.updateUser}
+                user={this.state.user}
+                logOutUser={this.logOutUser}
+              />
+
+              <ArticleList path="/" topics={this.state.topics} />
+              <ArticleList path="/articles" topics={this.state.topics} />
+              <ArticleList
+                path="/articles/topic/:topic"
+                topics={this.state.topics}
+              />
               <ErrorDisplay
                 default
                 err={{ status: 404, msg: 'incorrect path' }}
@@ -58,10 +67,32 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    api.getTopics().then(topics => {
-      return this.setState({ topics, isLoading: false });
-    });
+    const loggedInUser = localStorage.getItem('loggedInUser');
+    if (!loggedInUser) {
+      api.getTopics().then(topics => {
+        this.setState({ topics, isLoading: false });
+      });
+    } else {
+      api.getTopics().then(topics => {
+        this.setState({ topics, isLoading: false, user: loggedInUser });
+      });
+    }
   }
+
+  updateUser = user => {
+    const loggedInUser = localStorage.getItem('loggedInUser');
+    if (loggedInUser === user) this.setState({ user: loggedInUser });
+  };
+
+  logOutUser = () => {
+    this.setState({ user: 'guest' });
+  };
+
+  // componentDidUpdate(prevProps, prevState) {
+  //   if(this.state.user !== prevState.user) {
+
+  //   }
+  // }
 }
 
 export default App;

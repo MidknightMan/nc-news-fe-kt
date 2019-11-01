@@ -38,7 +38,10 @@ class ArticleViewer extends PureComponent {
       })
       .catch(err => {
         this.setState({
-          err: { status: 404, msg: 'article not found' },
+          err: {
+            status: err.response.status || 404,
+            msg: err.response.data.msg || 'article not found'
+          },
           isLoading: false
         });
       });

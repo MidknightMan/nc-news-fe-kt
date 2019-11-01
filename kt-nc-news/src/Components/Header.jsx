@@ -16,7 +16,12 @@ class Header extends PureComponent {
           <Link to="/articles/topic/cooking">Cooking</Link>{' '}
           <Link to="/articles/topic/football">Football</Link>{' '}
           <Link to="/articles/topic/coding">Coding</Link>{' '}
-          <Link to="/myprofile">My Profile</Link> <Link to="/login">Login</Link>
+          <Link to="/myprofile">My Profile</Link>{' '}
+          {this.props.user === 'guest' ? (
+            <Link to="/login">Login</Link>
+          ) : (
+            <Link to="/login">Logout</Link>
+          )}
         </nav>
       </div>
     );

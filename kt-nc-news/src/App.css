@@ -28,15 +28,25 @@
   grid-area: 'header';
   grid-column: 1 / span 2;
   grid-row: 1 / span 1;
-  background-color: khaki;
+  background-color: #0c0032;
+  color: whitesmoke;
+}
+
+nav {
+  background-color: #190061;
+  justify-content: stretch;
+  padding: 20px;
+
+  font-size-adjust: 1.2;
 }
 
 .tickerBox {
   grid-area: 'ticker';
   grid-column: 1 / span 2;
   grid-row: 2 / span 1;
-  background-color: rgba(230, 76, 76, 0.774);
-  color: rgb(229, 160, 160);
+  background-color: #2b0794a6;
+  color: rgb(255, 255, 255);
+  font-style: italic;
 }
 
 link {
@@ -44,6 +54,7 @@ link {
 }
 
 .search {
+  display: none;
   grid-area: 'search';
   grid-column: 1 / span 2;
   grid-row: 3 / span 1;
@@ -54,7 +65,7 @@ link {
   grid-area: 'myprofile';
   grid-column: 1 / span 2;
   grid-row: 4 / span 1;
-  background-color: lightskyblue;
+  background-color: #282828;
 }
 
 /* .articleList {
@@ -80,12 +91,24 @@ link {
   overflow: scroll;
   grid-column: 1 / span 2;
   grid-row: 5 / span 1;
-  background-color: lightpink;
-  justify-content: space-around;
+  background-color: #282828;
+  justify-content: center;
+  color: whitesmoke;
+  padding-top: 2%;
 }
 
 #articleCard {
-  border: grey 1px solid;
+  border: #240090 1px solid;
+  justify-content: stretch;
+  padding: 10px;
+  margin: 2%;
+  background-color: #18006157;
+  border-radius: 15px;
+}
+
+#articleCard:hover {
+  background-color: #724ae9a6;
+  border-color: whitesmoke;
 }
 
 .errorDisplay {
@@ -93,4 +116,22 @@ link {
   grid-column: 1 / span 2;
   grid-row: 4 / span 1;
   background-color: lightskyblue;
+}
+
+ul {
+  justify-content: stretch;
+  padding: 0%;
+  margin: 1%;
+}
+
+a:link {
+  color: white;
+}
+
+a:visited {
+  color: lightgray;
+}
+
+a:hover {
+  color: lightskyblue;
 }

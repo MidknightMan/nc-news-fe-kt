@@ -19,7 +19,12 @@ class CommentTextBox extends PureComponent {
           value={this.state.commentBody}
           required
         />
-        <button type="submit">Submit Comment</button>
+        <button
+          disabled={this.state.user === 'guest' ? true : false}
+          type="submit"
+        >
+          Submit Comment
+        </button>
       </form>
     );
   }
