@@ -4,7 +4,7 @@ import { Dimmer, Loader } from 'semantic-ui-react';
 function Loading() {
   return (
     <div>
-      <Dimmer active inverted>
+      <Dimmer inverted active>
         <Loader inverted>Loading</Loader>
       </Dimmer>
     </div>

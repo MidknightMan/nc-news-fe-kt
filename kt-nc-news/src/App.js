@@ -10,6 +10,7 @@ import ErrorDisplay from './Components/ErrorDisplay';
 import ArticleViewer from './Components/ArticleViewer';
 import * as api from './api';
 import UserLogin from './Components/UserLogin';
+import ArticleWriter from './Components/ArticleWriter.';
 
 class App extends React.Component {
   state = {
@@ -47,6 +48,10 @@ class App extends React.Component {
               <ArticleList
                 path="/articles/topic/:topic"
                 topics={this.state.topics}
+              />
+              <ArticleWriter
+                path="/articles/addarticle"
+                user={this.state.user}
               />
               <ErrorDisplay
                 default

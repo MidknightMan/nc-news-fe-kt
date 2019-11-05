@@ -17,8 +17,8 @@ class Comments extends PureComponent {
     const { comments, isLoading } = this.state;
     if (isLoading) return <p>Loading Comments...</p>;
     return (
-      <label>
-        Comments:
+      <main className="commentsContainer">
+        <p>Comments:</p>
         <section>
           <CommentTextBox
             user={this.props.user}
@@ -28,15 +28,19 @@ class Comments extends PureComponent {
         <ul>
           {comments.map((comment, i) => {
             return (
-              <div key={i}>
-                <p key={i}>
-                  comment: {comment.body} author: {comment.author}
+              <div key={i} id="commentCard">
+                <p key={i} id="commentText">
+                  comment: {comment.body}
+                </p>
+                <p key={comment.comment_id} id="commentAuthor">
+                  author: {comment.author}
                 </p>
                 {comment.author === this.state.user && (
                   <button
                     onClick={this.handleCommentDelete}
                     value={comment.author}
                     name={comment.comment_id}
+                    className="commentDelete"
                   >
                     Delete
                   </button>
@@ -50,7 +54,7 @@ class Comments extends PureComponent {
             );
           })}
         </ul>
-      </label>
+      </main>
     );
   }
 

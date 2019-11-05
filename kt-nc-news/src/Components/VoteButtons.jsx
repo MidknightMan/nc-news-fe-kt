@@ -26,15 +26,16 @@ class VoteButtons extends PureComponent {
     const { existingVotes } = this.props;
     const { vote, err } = this.state;
     return (
-      <>
+      <div className="votingButtons">
         <button
           disabled={vote === -1 ? true : false}
           onClick={this.handleVote}
           value="-1"
+          id="downvote"
         >
           -
         </button>
-        <p>Votes: {existingVotes + vote}</p>
+        <p className="voteText">Votes: {existingVotes + vote}</p>
         {err && (
           <p>
             {err.status}: {err.msg}
@@ -44,10 +45,11 @@ class VoteButtons extends PureComponent {
           disabled={vote === 1 ? true : false}
           onClick={this.handleVote}
           value="1"
+          id="upvote"
         >
           +
         </button>
-      </>
+      </div>
     );
   }
 

@@ -2,6 +2,8 @@ import React, { PureComponent } from 'react';
 import * as api from '../api';
 import ArticleCard from './ArticleCard';
 import ErrorDisplay from './ErrorDisplay';
+import Loading from './Loading';
+import { Link } from '@reach/router';
 
 class ArticleList extends PureComponent {
   state = {
@@ -14,7 +16,7 @@ class ArticleList extends PureComponent {
   render() {
     const topic = this.props.topic;
     const { articles, isLoading, err } = this.state;
-    if (isLoading) return <p>Loading...</p>;
+    if (isLoading) return <Loading />;
     if (err) return <ErrorDisplay err={err} />;
     return (
       <div>
@@ -38,6 +40,7 @@ class ArticleList extends PureComponent {
               <option value="asc">Ascending</option>
             </select>
           </label>
+          <Link to="/articles/addarticle">Add Article</Link>
           <ul>
             {articles.map(article => {
               return (

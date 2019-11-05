@@ -202,3 +202,192 @@ a:hover {
   height: 30px;
   font-size: 76%;
 }
+
+.articleWriterContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto auto auto;
+}
+
+/* .articleWriterTitle {
+  grid-column: 1 / span 2;
+  grid-row: 1 / span 1;
+  margin: 2%;
+  padding: 1%;
+} */
+
+.topicDropDown {
+  grid-column: 1 / span 2;
+  grid-row: 2 / span 1;
+}
+
+.articleBodyBox {
+  grid-column: 1 / span 2;
+  grid-row: 3 / span 1;
+  border-radius: 15px;
+  background-color: #3a3a3aef;
+  margin: 2%;
+  padding: 2%;
+  color: white;
+  border: #240090 1px solid;
+}
+
+.articleTitleBox {
+  grid-column: 1 / span 2;
+  grid-row: 1 / span 1;
+  border-radius: 15px;
+  background-color: #3a3a3aef;
+  margin: 2%;
+  padding: 2%;
+  color: white;
+  border: #240090 1px solid;
+}
+
+.submitArticle {
+  grid-column: 1 / span 2;
+  grid-row: 4 / span 1;
+  margin: 2%;
+  padding: 2%;
+  border-radius: 15px;
+}
+
+.votingButtons {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: auto;
+}
+
+#downvote {
+  grid-column: 1 / span 1;
+  grid-row: 1 / span 1;
+  border-radius: 15px;
+  align-self: center;
+  /* justify-self: center; */
+  font-size: 120%;
+  border: #240090 2px solid;
+  margin: 5%;
+  background-color: #28282800;
+  color: white;
+}
+
+.voteText {
+  grid-column: 2 / span 1;
+  grid-row: 1 / span 1;
+  /* justify-self: center; */
+  align-self: center;
+}
+
+#upvote {
+  grid-column: 3 / span 1;
+  grid-row: 1 / span 1;
+  border-radius: 15px;
+  align-self: center;
+  /* justify-self: center; */
+  font-size: 120%;
+  border: #240090 2px solid;
+  margin: 5%;
+  background-color: #28282800;
+  color: white;
+}
+
+#upvote:hover {
+  background-color: #240090;
+}
+
+#downvote:hover {
+  background-color: #240090;
+}
+
+#upvote:disabled {
+  display: none;
+}
+
+#downvote:disabled {
+  display: none;
+}
+
+.articleViewerContainer {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto auto auto auto auto auto;
+}
+
+.articleVTitle {
+  grid-column: 1 / span 1;
+  grid-row: 1 / span 1;
+}
+
+.articleVAuthor {
+  grid-column: 1 / span 1;
+  grid-row: 2 / span 1;
+}
+
+#articleVTopic {
+  grid-column: 1 / span 1;
+  grid-row: 3 / span 1;
+}
+
+.articleVVoters {
+  grid-column: 1 / span 1;
+  grid-row: 4 / span 1;
+}
+
+#articleVBody {
+  grid-column: 1 / span 1;
+  grid-row: 5 / span 1;
+  margin: 1%;
+  padding: 2%;
+  background-color: #1f1f1fd2;
+  border-radius: 15px;
+}
+
+.articleVComments {
+  grid-column: 1 / span 1;
+  grid-row: 6 / span 1;
+  margin: 1%;
+  padding: 1%;
+}
+
+.commentTBContainer {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto auto;
+}
+
+#commentBodyText {
+  grid-column: 1 / span 1;
+  grid-row: 1 / span 1;
+  border-radius: 15px;
+  background-color: #3a3a3aef;
+  margin: 2%;
+  padding: 2%;
+  color: white;
+  border: #240090 1px solid;
+}
+
+#commentSubmit {
+  grid-column: 1 / span 1;
+  grid-row: 2 / span 1;
+  margin: 2%;
+  padding: 2%;
+  border-radius: 15px;
+}
+
+#commentCard {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto auto auto auto;
+  border: #240090 1px solid;
+  padding: 10px;
+  margin: 2%;
+  background-color: #1800611c;
+  border-radius: 15px;
+}
+
+.commentDelete {
+  grid-column: 1 / span 1;
+  grid-row: 4 / span 1;
+  margin: 1%;
+  padding: 1%;
+  border-radius: 15px;
+}

@@ -10,23 +10,27 @@ class ArticleViewer extends PureComponent {
 
   render() {
     const { isLoading, article, err } = this.state;
-    if (isLoading) return <Loading active />;
+    if (isLoading) return <Loading />;
     if (article === {}) return <p>Please select an article</p>;
     if (err) return <ErrorDisplay err={err} />;
     return (
-      <div>
-        <main>
-          <p>Title: {article.title}</p>
-          <p>Author: {article.author}</p>
-          <p>Topic: {article.topic}</p>
-          <VoteButtons
-            id={article.article_id}
-            existingVotes={article.votes}
-            section={'articles'}
-          />
-          <p>{article.body}</p>
-        </main>
-        <Comments article_id={this.props.article_id} user={this.props.user} />
+      <div className="articleViewerContainer">
+        <p className="articleVTitle">Title: {article.title}</p>
+        <p className="articleVAuthor">Author: {article.author}</p>
+        <p id="articleVTopic">Topic: {article.topic}</p>
+        <VoteButtons
+          id={article.article_id}
+          existingVotes={article.votes}
+          section={'articles'}
+          className="articleVVoters"
+        />
+        <p id="articleVBody">{article.body}</p>
+
+        <Comments
+          article_id={this.props.article_id}
+          user={this.props.user}
+          className="articleVComments"
+        />
       </div>
     );
   }

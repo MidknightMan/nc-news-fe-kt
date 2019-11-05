@@ -10,18 +10,30 @@ class CommentTextBox extends PureComponent {
   render() {
     const { isLoading } = this.state;
     if (isLoading) return <p>Loading...</p>;
+    if (this.props.user === 'guest') return <p>Please login to add comments</p>;
     return (
-      <form onSubmit={this.handleSubmit}>
-        <input
+      <form onSubmit={this.handleSubmit} className="commentTBContainer">
+        {/* <input
           type="text"
           placeholder="Insert Your Comment Here"
           onChange={this.handleChange}
           value={this.state.commentBody}
           required
-        />
+        /> */}
+        <textarea
+          name="commentBodyText"
+          id="commentBodyText"
+          cols="30"
+          rows="10"
+          placeholder="Insert Your Comment Here"
+          onChange={this.handleChange}
+          value={this.state.commentBody}
+          required
+        ></textarea>
         <button
           disabled={this.state.user === 'guest' ? true : false}
           type="submit"
+          id="commentSubmit"
         >
           Submit Comment
         </button>
