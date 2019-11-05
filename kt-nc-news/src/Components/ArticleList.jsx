@@ -17,7 +17,13 @@ class ArticleList extends PureComponent {
     const topic = this.props.topic;
     const { articles, isLoading, err } = this.state;
     if (isLoading) return <Loading />;
-    if (err) return <ErrorDisplay err={err} />;
+    if (err)
+      return (
+        <div>
+          <ErrorDisplay err={err} />
+          <Link to="/articles">Back To Articles</Link>
+        </div>
+      );
     return (
       <div>
         <div>
@@ -75,20 +81,28 @@ class ArticleList extends PureComponent {
       api
         .GetAllArticles(this.state.sortBy, this.state.orderBy, topic)
         .then(articles => {
-          this.setState({ articles, isLoading: false });
+          this.setState({ articles, isLoading: false, err: null });
         });
     } else {
-      api.GetAllArticles().then(articles => {
-        this.setState({ articles, isLoading: false });
-      });
+      api
+        .GetAllArticles(this.state.sortBy, this.state.orderBy, topic)
+        .then(articles => {
+          this.setState({ articles, isLoading: false, err: null });
+        })
+        .catch(err => {
+          this.setState({
+            isLoading: false,
+            err: { status: 400, msg: 'bad request' }
+          });
+        });
     }
   }
 
   componentDidUpdate(prevProps, prevState) {
     let topic = this.props.topic;
-    if (topic === 'articles') {
-      topic = undefined;
-    }
+    // if (topic === 'articles') {
+    //   topic = undefined;
+    // }
     if (
       this.state.sortBy !== prevState.sortBy ||
       this.state.orderBy !== prevState.orderBy
@@ -97,6 +111,12 @@ class ArticleList extends PureComponent {
         .GetAllArticles(this.state.sortBy, this.state.orderBy, topic)
         .then(articles => {
           this.setState({ articles, isLoading: false });
+        })
+        .catch(err => {
+          this.setState({
+            isLoading: false,
+            err: { status: 400, msg: 'bad request' }
+          });
         });
     }
     if (this.props.topic !== prevProps.topic) {
@@ -104,13 +124,28 @@ class ArticleList extends PureComponent {
         api
           .GetAllArticles(this.state.sortBy, this.state.orderBy, topic)
           .then(articles => {
-            this.setState({ articles, isLoading: false });
+            this.setState({ articles, isLoading: false, err: null });
           });
       } else {
-        api.GetAllArticles().then(articles => {
-          this.setState({ articles, isLoading: false });
-        });
+        api
+          .GetAllArticles(this.state.sortBy, this.state.orderBy, topic)
+          .then(articles => {
+            this.setState({ articles, isLoading: false, err: null });
+          })
+          .catch(err => {
+            this.setState({
+              isLoading: false,
+              err: { status: 400, msg: 'bad request' }
+            });
+          });
       }
+    }
+    if (!topic && prevProps.topic) {
+      api
+        .GetAllArticles(this.state.sortBy, this.state.orderBy, topic)
+        .then(articles => {
+          this.setState({ articles, isLoading: false, err: null });
+        });
     }
   }
 }

@@ -39,6 +39,10 @@ nav {
   font-size-adjust: 1;
 }
 
+nav a {
+  padding-right: 1%;
+}
+
 .tickerBox {
   grid-area: 'ticker';
   grid-column: 1 / span 2;
