@@ -1,9 +1,12 @@
 import React, { PureComponent } from 'react';
-import { Link } from '@reach/router';
+import { Link, navigate } from '@reach/router';
+import * as api from '../api';
 
 class ArticleWriter extends PureComponent {
   state = {
-    articleBody: ''
+    articleBody: '',
+    topic: 'cooking',
+    articleTitle: ''
   };
 
   render() {
@@ -16,13 +19,17 @@ class ArticleWriter extends PureComponent {
       );
     return (
       <div>
-        <form className="articleWriterContainer">
+        <form
+          className="articleWriterContainer"
+          onSubmit={this.handleSubmitArticle}
+        >
           <textarea
             className="articleTitleBox"
             cols="100"
             rows="1"
             placeholder="article title"
             required
+            onChange={this.handleTitleChange}
           ></textarea>
 
           <textarea
@@ -38,7 +45,12 @@ class ArticleWriter extends PureComponent {
 
           <label className="topicDropDown">
             Topic:
-            <select name="topicDropDownBar" id="sortBy" required>
+            <select
+              name="topicDropDownBar"
+              id="sortBy"
+              required
+              onChange={this.handleTopicChange}
+            >
               <option value="cooking">Cooking</option>
               <option value="coding">Coding</option>
               <option value="football">Football</option>
@@ -59,6 +71,34 @@ class ArticleWriter extends PureComponent {
   handleBodyChange = event => {
     event.preventDefault();
     this.setState({ articleBody: event.target.value });
+  };
+
+  handleTopicChange = event => {
+    event.preventDefault();
+    this.setState({ topic: event.target.value });
+  };
+
+  handleTitleChange = event => {
+    event.preventDefault();
+    this.setState({ articleTitle: event.target.value });
+  };
+
+  handleSubmitArticle = event => {
+    event.preventDefault();
+    const { articleTitle, topic, articleBody } = this.state;
+    const { user } = this.props;
+    api
+      .addArticle(articleTitle, user, topic, articleBody)
+      .then(addedArticle => {
+        if (addedArticle) {
+          this.setState({
+            articleBody: '',
+            topic: 'cooking',
+            articleTitle: ''
+          });
+          navigate('/');
+        }
+      });
   };
 }
 

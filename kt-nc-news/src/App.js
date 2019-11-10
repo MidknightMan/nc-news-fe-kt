@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import { Router } from '@reach/router';
-import Header from './Components/Header';
+import HeaderX from './Components/HeaderX';
 import Ticker from './Components/Ticker';
 import ArticleList from './Components/ArticleList';
 import SearchBox from './Components/SearchBox';
@@ -26,7 +26,7 @@ class App extends React.Component {
       <div className="App">
         <div className="app-box">
           <div className="header">
-            <Header user={this.state.user} />
+            <HeaderX user={this.state.user} />
           </div>
           <div className="tickerBox">
             <Ticker />

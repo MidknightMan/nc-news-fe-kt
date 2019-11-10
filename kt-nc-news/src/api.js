@@ -81,7 +81,18 @@ export const getUsers = async () => {
   return users.data.users.map(user => {
     return user.username;
   });
-  // return topics.data.topics.map(topic => {
-  //   return topic.slug;
-  // });
+};
+
+export const addArticle = (title, author, topic, body) => {
+  console.log(author);
+  return axios
+    .post(`https://nc-news-kst.herokuapp.com/api/articles/`, {
+      title,
+      author,
+      topic,
+      body
+    })
+    .then(({ data: { addedArticle } }) => {
+      return addedArticle;
+    });
 };

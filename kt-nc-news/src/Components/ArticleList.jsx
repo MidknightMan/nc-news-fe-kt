@@ -30,7 +30,7 @@ class ArticleList extends PureComponent {
           <label className="sortByDropDown">
             Sort-By:
             <select name="sortBy" id="sortBy" onChange={this.handleSortChange}>
-              <option value="created_at">Date Created (Default) </option>
+              <option value="created_at">Date Created </option>
               <option value="title">Title</option>
               <option value="author">Author</option>
               <option value="votes">Votes</option>
@@ -42,7 +42,7 @@ class ArticleList extends PureComponent {
           <label>
             Order-By:
             <select name="sortBy" id="sortBy" onChange={this.handleOrderChange}>
-              <option value="desc">Descending (Default) </option>
+              <option value="desc">Descending </option>
               <option value="asc">Ascending</option>
             </select>
           </label>

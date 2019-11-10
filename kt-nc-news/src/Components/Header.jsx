@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import { Link } from '@reach/router';
 
 class Header extends PureComponent {
-  state = {};
+  state = { user: '' };
 
   render() {
     return (
@@ -25,6 +25,10 @@ class Header extends PureComponent {
         </nav>
       </div>
     );
+  }
+
+  componentDidMount() {
+    this.setState({ user: this.props.user });
   }
 }
 
