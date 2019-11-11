@@ -88,12 +88,6 @@ class App extends React.Component {
   logOutUser = () => {
     this.setState({ user: 'guest' });
   };
-
-  // componentDidUpdate(prevProps, prevState) {
-  //   if(this.state.user !== prevState.user) {
-
-  //   }
-  // }
 }
 
 export default App;
