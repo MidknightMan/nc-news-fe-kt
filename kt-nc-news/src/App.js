@@ -4,7 +4,6 @@ import { Router } from '@reach/router';
 import HeaderX from './Components/HeaderX';
 import Ticker from './Components/Ticker';
 import ArticleList from './Components/ArticleList';
-import SearchBox from './Components/SearchBox';
 import UserProfile from './Components/UserProfile';
 import ErrorDisplay from './Components/ErrorDisplay';
 import ArticleViewer from './Components/ArticleViewer';
@@ -30,9 +29,6 @@ class App extends React.Component {
           </div>
           <div className="tickerBox">
             <Ticker />
-          </div>
-          <div className="search">
-            <SearchBox />
           </div>
           <div className="routedContent">
             <Router>

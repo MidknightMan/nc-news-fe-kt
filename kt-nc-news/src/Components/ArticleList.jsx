@@ -2,7 +2,6 @@ import React, { PureComponent } from 'react';
 import * as api from '../api';
 import ArticleCard from './ArticleCard';
 import ErrorDisplay from './ErrorDisplay';
-import Loading from './Loading';
 import { Link } from '@reach/router';
 
 class ArticleList extends PureComponent {
@@ -16,7 +15,7 @@ class ArticleList extends PureComponent {
   render() {
     const topic = this.props.topic;
     const { articles, isLoading, err } = this.state;
-    if (isLoading) return <Loading />;
+    if (isLoading) return <p>Loading articles...</p>;
     if (err)
       return (
         <div>

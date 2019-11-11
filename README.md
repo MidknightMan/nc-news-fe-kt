@@ -12,6 +12,17 @@ back-end hosted: https://nc-news-kst.herokuapp.com/
 
 In order to run this project locally, please first run an npm install in your terminal once you have cloned the project and then run npm start to run the project locally.
 
+Here are the minimum versions of the dependencies used to run this project:
+
+"@reach/router": "^1.2.1",
+"axios": "^0.19.0",
+"node-sass": "^4.13.0",
+"react": "^16.11.0",
+"react-dom": "^16.11.0",
+"react-scripts": "3.2.0"
+
+npm version used is 6.9.0
+
 Hope you enjoy visiting the site. Please note that content is not the work of the developer.
 
 Thanks.

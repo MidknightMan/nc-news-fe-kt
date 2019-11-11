@@ -13,13 +13,6 @@ class CommentTextBox extends PureComponent {
     if (this.props.user === 'guest') return <p>Please login to add comments</p>;
     return (
       <form onSubmit={this.handleSubmit} className="commentTBContainer">
-        {/* <input
-          type="text"
-          placeholder="Insert Your Comment Here"
-          onChange={this.handleChange}
-          value={this.state.commentBody}
-          required
-        /> */}
         <textarea
           name="commentBodyText"
           id="commentBodyText"
